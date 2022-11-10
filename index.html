@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video width="1280" height="720" controls>
+        <source src="https://rr2---sn-a5meknds.googlevideo.com/videoplayback?expire=1668103264&ei=AOhsY5rVF-mFxgK5hoigCA&ip=178.79.138.49&id=o-AIxnpazMtO6y8-ncp6ICJBJAsHR64y__R3ZnTLvh9B3Z&itag=160&aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C302%2C394%2C395%2C396%2C397%2C398&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=V4gKcIrRexK1zg5gJgfH7C8J&gir=yes&clen=334436&dur=94.266&lmt=1643962193870942&keepalive=yes&fexp=24001373,24007246&c=WEB&txp=5535434&n=1gQsP1M145EIGw&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRAIgQO_rLUpyRofKcuIH0j9Wpv-tjRQyNf62CYl1vr3I4-kCIFYBJKH9VWoaVDC6ahJx8OSL4PGaaQVJbO4EHGZqo5az&rm=sn-5hnelr7l&req_id=13315435db40a3ee&ipbypass=yes&redirect_counter=2&cm2rm=sn-n4vld76&cms_redirect=yes&cmsv=e&mh=lU&mip=2a09:bac0:23::681d:3b0e&mm=34&mn=sn-a5meknds&ms=ltu&mt=1668081644&mv=m&mvi=2&pl=52&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgfWqhpWT12oJUNqvtnijnDCBHgodekHW1um3p-wHvZkACIDZT8ta8DagHzrSlkIqnryKdNAx2Ms0kx3EsJAIeH8eE" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <button id="play_button" type="button">play</button>
+
+    <canvas id="canvas"  width = "1280" height ="720"></canvas>
+      <script>
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        const video = document.querySelector("video")
+
+        const youtube = document.querySelector("iframe")
+        const canvas1 = document.querySelector("canvas");
+        const ctx1 = canvas.getContext("2d");
+
+        var playButton = document.getElementById("play_button");
+        // Event listener for the play/pause button
+        playButton.addEventListener("click", function() {
+        if (video.paused == true) {
+            // Play the video
+            video.play();
+
+            // Update the button text to 'Pause'
+            playButton.innerHTML = "Pause";
+        } else {
+            // Pause the video
+            video.pause();
+
+            // Update the button text to 'Play'
+            playButton.innerHTML = "Play";
+        }
+        });
+
+        video.addEventListener("play", () => {
+            function step() {
+
+
+
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            
+        });
+      </script>
+</body>
+</html>
